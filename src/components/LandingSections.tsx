@@ -5,6 +5,9 @@ import { MemorySection } from '@/components/landing/MemorySection'
 import { BenefitsSection } from '@/components/landing/BenefitsSection'
 import { TestimonialSection } from '@/components/landing/TestimonialSection'
 import { WorkflowSection } from '@/components/landing/WorkflowSection'
+import { PricingSection } from '@/components/landing/PricingSection'
+import { FinalCallToAction } from '@/components/landing/FinalCallToAction'
+import { SiteFooter } from '@/components/landing/SiteFooter'
 
 export function LandingSections() {
   return (
@@ -16,6 +19,9 @@ export function LandingSections() {
       <BenefitsSection />
       <TestimonialSection />
       <WorkflowSection />
+      <PricingSection />
+      <FinalCallToAction />
+      <SiteFooter />
     </>
   )
 }
