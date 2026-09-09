@@ -26,6 +26,9 @@ interface DropdownProps {
   required?: boolean
   disabled?: boolean
   className?: string
+  hideLabel?: boolean
+  labelClassName?: string
+  triggerClassName?: string
 }
 
 export function Dropdown({
@@ -34,6 +37,9 @@ export function Dropdown({
   options,
   id,
   className,
+  hideLabel = false,
+  labelClassName,
+  triggerClassName,
   ...selectProps
 }: DropdownProps) {
   const generatedId = useId()
@@ -41,7 +47,14 @@ export function Dropdown({
 
   return (
     <div className={cn('grid min-w-0 gap-[7px]', className)}>
-      <label className="text-[12px] font-semibold text-[#677456]" htmlFor={triggerId}>
+      <label
+        className={cn(
+          'text-[12px] font-semibold text-[#677456]',
+          labelClassName,
+          hideLabel && 'sr-only',
+        )}
+        htmlFor={triggerId}
+      >
         {label}
       </label>
       <Select<string> items={options} {...selectProps}>
@@ -50,6 +63,7 @@ export function Dropdown({
           className={cn(
             'w-full min-w-0 min-h-10 rounded-md bg-card px-3 text-[13px]',
             'max-[640px]:min-h-11 max-[640px]:text-[16px]',
+            triggerClassName,
           )}
         >
           <SelectValue placeholder={placeholder} />

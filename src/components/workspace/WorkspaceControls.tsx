@@ -2,6 +2,14 @@ import { cn } from '@/lib/utils'
 import { BookOpen, Search, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Dropdown } from '@/components/Dropdown'
+
+const teamFilterOptions = [
+  { label: 'All teams', value: 'All teams' },
+  { label: 'Engineering', value: 'Engineering' },
+  { label: 'Product', value: 'Product' },
+  { label: 'Business', value: 'Business' },
+]
 
 interface WorkspaceControlsProps {
   mode: 'decisions' | 'memory'
@@ -75,7 +83,7 @@ export function WorkspaceControls({
         <div
           className={cn(
             'flex items-center gap-2.5 max-[760px]:w-full max-[760px]:grid',
-            'max-[760px]:grid-cols-[minmax(0,_1fr)_125px] max-[380px]:grid-cols-1',
+            'max-[760px]:grid-cols-[minmax(0,_1fr)_150px] max-[380px]:grid-cols-1',
           )}
         >
           <div className="relative w-[225px] max-[760px]:w-auto max-[760px]:min-w-0">
@@ -91,20 +99,18 @@ export function WorkspaceControls({
               onChange={(event) => onQueryChange(event.target.value)}
             />
           </div>
-          <select
-            className={cn(
-              'min-h-11 py-2 pr-8 pl-3 border border-border rounded-md bg-card',
-              'text-foreground text-[13px] max-[760px]:text-[11px] max-[760px]:pr-4.5',
-            )}
-            aria-label="Filter by team"
+          <Dropdown
+            label="Filter by team"
+            placeholder="All teams"
+            options={teamFilterOptions}
+            hideLabel
+            className="w-37.5 max-[760px]:w-full"
+            triggerClassName="min-h-11 max-[640px]:text-sm"
             value={team}
-            onChange={(event) => onTeamChange(event.target.value)}
-          >
-            <option>All teams</option>
-            <option>Engineering</option>
-            <option>Product</option>
-            <option>Business</option>
-          </select>
+            onValueChange={(value) => {
+              if (value !== null) onTeamChange(value)
+            }}
+          />
         </div>
       )}
     </div>
