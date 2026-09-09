@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import { useId, useState } from 'react'
 import type { FormEvent } from 'react'
 import { Plus } from 'lucide-react'
+import { Dropdown } from '@/components/Dropdown'
 import { PrimaryButton } from '@/components/PrimaryButton'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -18,6 +19,12 @@ import type { Decision } from '@/data/decisions'
 interface NewDecisionDialogProps {
   onCreate: (decision: Decision) => void
 }
+
+const teamOptions = [
+  { label: 'Engineering', value: 'Engineering' },
+  { label: 'Product', value: 'Product' },
+  { label: 'Business', value: 'Business' },
+]
 
 const detailFields = [
   {
@@ -170,27 +177,14 @@ export function NewDecisionDialog({ onCreate }: NewDecisionDialogProps) {
                 placeholder="Your name"
               />
             </div>
-            <div className="grid gap-[7px] min-w-0">
-              <label
-                className="text-[12px] font-semibold text-[#677456]"
-                htmlFor={`${id}-team`}
-              >
-                Team
-              </label>
-              <select
-                className={cn(
-                  'min-h-10 py-2 pr-8 pl-3 border border-border rounded-md bg-card',
-                  'text-foreground text-[13px] w-full max-[640px]:text-[16px]',
-                )}
-                id={`${id}-team`}
-                name="team"
-                defaultValue="Engineering"
-              >
-                <option>Engineering</option>
-                <option>Product</option>
-                <option>Business</option>
-              </select>
-            </div>
+            <Dropdown
+              label="Team"
+              placeholder="Select a team"
+              options={teamOptions}
+              name="team"
+              defaultValue="Engineering"
+              required
+            />
           </div>
           {detailFields.map(({ name, label, placeholder, required }) => (
             <div className="grid gap-[7px] min-w-0" key={name}>
