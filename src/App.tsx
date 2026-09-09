@@ -1,10 +1,12 @@
+import { Route, Routes } from 'react-router'
+import ProductPage from '@/pages/ProductPage'
+import DemoPage from '@/pages/DemoPage'
+
 export default function App() {
   return (
-    <main className="min-h-screen bg-background p-8 text-foreground">
-      <h1 className="text-2xl font-semibold">Decision Log</h1>
-      <p className="mt-2 text-muted-foreground">
-        React, TypeScript, and Tailwind are ready.
-      </p>
-    </main>
+    <Routes>
+      <Route path="/" element={<ProductPage />} />
+      <Route path="/demo" element={<DemoPage />} />
+    </Routes>
   )
 }
