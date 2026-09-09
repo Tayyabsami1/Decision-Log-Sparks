@@ -4,6 +4,7 @@ import { ProductOverview } from '@/components/landing/ProductOverview'
 import { MemorySection } from '@/components/landing/MemorySection'
 import { BenefitsSection } from '@/components/landing/BenefitsSection'
 import { TestimonialSection } from '@/components/landing/TestimonialSection'
+import { WorkflowSection } from '@/components/landing/WorkflowSection'
 
 export function LandingSections() {
   return (
@@ -14,6 +15,7 @@ export function LandingSections() {
       <MemorySection />
       <BenefitsSection />
       <TestimonialSection />
+      <WorkflowSection />
     </>
   )
 }
