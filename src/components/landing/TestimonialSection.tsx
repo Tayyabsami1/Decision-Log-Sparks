@@ -1,65 +1,39 @@
-import { cn } from '@/lib/utils'
 import { Layers } from 'lucide-react'
 
 export function TestimonialSection() {
   return (
-    <section
-      className={cn(
-        'max-w-290 px-8 mx-auto max-[640px]:px-5.5 flex items-center gap-7.5 py-11',
-        'border-y border-y-line-soft max-[640px]:gap-4 max-[640px]:py-7.5',
-      )}
-    >
-      <div
-        className={cn(
-          'text-[100px] leading-[0.7] font-serif text-[#d6bb7f] self-start',
-          'max-[640px]:text-[65px]',
-        )}
+    <section className="mx-auto flex max-w-6xl items-center gap-4 border-y border-line-soft px-6 py-8 sm:gap-8 sm:px-8 sm:py-12">
+      <span
+        className="hidden self-start font-serif text-8xl leading-none text-primary/50 sm:block"
         aria-hidden="true"
       >
         “
-      </div>
-      <div>
-        <p
-          className={cn(
-            'text-[8px] leading-[1.8] font-mono tracking-[1px] text-[#808873]',
-            'max-[640px]:text-[7px]',
-          )}
-        >
+      </span>
+      <div className="min-w-0">
+        <p className="font-mono text-xs leading-relaxed tracking-wide text-text-soft">
           THE DIFFERENCE CONTEXT MAKES · ILLUSTRATIVE TESTIMONIAL
         </p>
-        <blockquote
-          className={cn(
-            'text-[26px] leading-[1.5] font-serif tracking-[-0.5px] mt-4 mx-0 mb-5.5',
-            'text-[#46523b] max-[640px]:text-[23px]',
-          )}
-        >
+        <blockquote className="mt-4 mb-6 font-serif text-2xl leading-relaxed tracking-tight text-foreground sm:text-3xl">
           “We stopped asking ‘why did we do this?’
-          <br className="max-[640px]:hidden" /> and started finding the answer.”
+          <br className="hidden sm:block" /> and started finding the answer.”
         </blockquote>
-        <div className="flex items-center gap-2.5 text-[11px]">
+        <div className="flex items-center gap-3 text-xs">
           <span
-            className={cn(
-              'inline-grid place-items-center w-6 h-6 rounded-full bg-[#ebe4d5]',
-              'text-[#8b7454] text-[9px] shrink-0',
-            )}
+            className="grid size-8 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground"
+            aria-hidden="true"
           >
             MC
           </span>
           <span>
             <strong className="block">Maya Chen</strong>
-            <small className="block mt-1 text-[10px] text-[#818876]">
+            <small className="mt-1 block text-xs leading-relaxed text-text-soft">
               Engineering lead, Acme · Fictional team example
             </small>
           </span>
         </div>
       </div>
-      <div
-        className={cn(
-          'ml-auto flex gap-2 items-center text-[#78826c] text-[26px] tracking-[-1px]',
-          'max-[900px]:hidden',
-        )}
-      >
-        <Layers size={28} />
+      <div className="ml-auto hidden shrink-0 items-center gap-2 text-2xl tracking-tight text-text-soft lg:flex">
+        <Layers className="size-7" aria-hidden="true" />
         <span>acme</span>
       </div>
     </section>

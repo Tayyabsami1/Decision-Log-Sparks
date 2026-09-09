@@ -1,7 +1,9 @@
+import { Team, type DecisionTeam } from '@/types/demo'
+
 export type Decision = {
   id: string
   title: string
-  team: string
+  team: DecisionTeam
   owner: string
   date: string
   status: 'Active' | 'Superseded'
@@ -17,7 +19,7 @@ export const sampleDecisions: Decision[] = [
   {
     id: 'DEC-024',
     title: 'Move session storage from Redis to PostgreSQL',
-    team: 'Engineering',
+    team: Team.Engineering,
     owner: 'Alex Morgan',
     date: '2026-08-14',
     status: 'Active',
@@ -38,7 +40,7 @@ export const sampleDecisions: Decision[] = [
   {
     id: 'DEC-023',
     title: 'Migrate payments to Payment Intents',
-    team: 'Engineering',
+    team: Team.Engineering,
     owner: 'Maya Chen',
     date: '2026-08-08',
     status: 'Active',
@@ -59,7 +61,7 @@ export const sampleDecisions: Decision[] = [
   {
     id: 'DEC-022',
     title: 'Make the first workspace invitation optional',
-    team: 'Product',
+    team: Team.Product,
     owner: 'Sam Rivera',
     date: '2026-08-05',
     status: 'Active',
@@ -80,7 +82,7 @@ export const sampleDecisions: Decision[] = [
   {
     id: 'DEC-020',
     title: 'Price by workspace, not by reader',
-    team: 'Business',
+    team: Team.Business,
     owner: 'Jordan Lee',
     date: '2026-07-28',
     status: 'Active',
@@ -100,7 +102,7 @@ export const sampleDecisions: Decision[] = [
   {
     id: 'DEC-017',
     title: 'Use Redis as the primary session store',
-    team: 'Engineering',
+    team: Team.Engineering,
     owner: 'Alex Morgan',
     date: '2026-06-10',
     status: 'Superseded',

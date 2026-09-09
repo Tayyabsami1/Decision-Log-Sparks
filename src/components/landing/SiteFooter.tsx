@@ -1,24 +1,21 @@
-import { cn } from '@/lib/utils'
 import { ArrowUpRight } from 'lucide-react'
 import { Brand } from '@/components/Brand'
 
 export function SiteFooter() {
   return (
-    <footer
-      className={cn(
-        'max-w-290 px-8 mx-auto max-[640px]:px-5.5 flex items-center gap-6 flex-wrap',
-        'py-8.5 max-[640px]:gap-5',
-      )}
-    >
+    <footer className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-4 px-6 py-8 sm:px-8">
       <Brand />
-      <p className="text-[11px] text-[#818777] max-[640px]:basis-full max-[640px]:order-1">
+      <p className="order-1 basis-full text-xs text-text-soft sm:order-none sm:basis-auto">
         Every decision has a reason. Keep it.
       </p>
-      <a className="ml-auto flex items-center gap-1.5 text-[11px]" href="#main-content">
+      <a
+        className="ml-auto flex min-h-11 items-center gap-2 text-xs hover:text-accent-foreground"
+        href="#main-content"
+      >
         Back to top
-        <ArrowUpRight size={14} />
+        <ArrowUpRight className="size-3.5" aria-hidden="true" />
       </a>
-      <span className="basis-full text-[9px] text-[#929887] max-[640px]:order-2">
+      <span className="order-2 basis-full text-xs text-text-soft">
         © {new Date().getFullYear()} Decision Log
       </span>
     </footer>

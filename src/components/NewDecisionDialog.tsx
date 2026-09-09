@@ -15,16 +15,15 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import type { Decision } from '@/data/decisions'
+import { Team, type DecisionTeam } from '@/types/demo'
 
 interface NewDecisionDialogProps {
   onCreate: (decision: Decision) => void
 }
 
-const teamOptions = [
-  { label: 'Engineering', value: 'Engineering' },
-  { label: 'Product', value: 'Product' },
-  { label: 'Business', value: 'Business' },
-]
+const teamOptions = Object.values(Team)
+  .filter((team): team is DecisionTeam => team !== Team.All)
+  .map((team) => ({ label: team, value: team }))
 
 const detailFields = [
   {
@@ -89,11 +88,15 @@ export function NewDecisionDialog({ onCreate }: NewDecisionDialogProps) {
         return
       }
     }
+    const team = teamOptions.find((option) => option.value === value('team'))?.value
+
+    if (!team) return
+
     const decision: Decision = {
       id: `DEC-${crypto.randomUUID().slice(0, 6).toUpperCase()}`,
       title: value('title'),
       owner: value('owner'),
-      team: value('team'),
+      team,
       date: new Date().toISOString().slice(0, 10),
       status: 'Active',
       context: value('context'),
@@ -182,7 +185,7 @@ export function NewDecisionDialog({ onCreate }: NewDecisionDialogProps) {
               placeholder="Select a team"
               options={teamOptions}
               name="team"
-              defaultValue="Engineering"
+              defaultValue={Team.Engineering}
               required
             />
           </div>

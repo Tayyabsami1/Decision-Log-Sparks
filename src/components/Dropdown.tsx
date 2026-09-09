@@ -8,21 +8,21 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-export interface DropdownOption {
+export interface DropdownOption<TValue extends string = string> {
   label: string
-  value: string
+  value: TValue
   disabled?: boolean
 }
 
-interface DropdownProps {
+interface DropdownProps<TValue extends string> {
   label: string
   placeholder: string
-  options: readonly DropdownOption[]
+  options: readonly DropdownOption<TValue>[]
   id?: string
   name?: string
-  value?: string | null
-  defaultValue?: string | null
-  onValueChange?: (value: string | null) => void
+  value?: TValue | null
+  defaultValue?: TValue | null
+  onValueChange?: (value: TValue | null) => void
   required?: boolean
   disabled?: boolean
   className?: string
@@ -31,7 +31,7 @@ interface DropdownProps {
   triggerClassName?: string
 }
 
-export function Dropdown({
+export function Dropdown<TValue extends string>({
   label,
   placeholder,
   options,
@@ -41,7 +41,7 @@ export function Dropdown({
   labelClassName,
   triggerClassName,
   ...selectProps
-}: DropdownProps) {
+}: DropdownProps<TValue>) {
   const generatedId = useId()
   const triggerId = id ?? generatedId
 
@@ -57,7 +57,7 @@ export function Dropdown({
       >
         {label}
       </label>
-      <Select<string> items={options} {...selectProps}>
+      <Select<TValue> items={options} {...selectProps}>
         <SelectTrigger
           id={triggerId}
           className={cn(

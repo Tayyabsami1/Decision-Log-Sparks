@@ -1,22 +1,34 @@
-import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
+import { cn } from '@/lib/utils'
 
 interface SectionLabelProps {
   className?: string
+  numberClassName?: string
   number: string
   children: ReactNode
 }
 
-export function SectionLabel({ number, children, className }: SectionLabelProps) {
+export function SectionLabel({
+  number,
+  children,
+  className,
+  numberClassName,
+}: SectionLabelProps) {
   return (
     <div
       className={cn(
-        'flex items-center gap-3 text-[#777b6c] text-[10px] leading-[1.7] font-mono',
-        'tracking-[1.3px]',
+        'flex items-center gap-3 font-mono text-xs leading-relaxed tracking-widest text-text-soft',
         className,
       )}
     >
-      <span className="pr-3 border-r border-r-[#cdd1c2] text-[#a47726]">{number}</span>
+      <span
+        className={cn(
+          'shrink-0 border-r border-border pr-3 text-accent-foreground',
+          numberClassName,
+        )}
+      >
+        {number}
+      </span>
       {children}
     </div>
   )

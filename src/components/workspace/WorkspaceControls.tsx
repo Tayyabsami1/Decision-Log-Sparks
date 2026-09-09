@@ -3,22 +3,21 @@ import { BookOpen, Search, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Dropdown } from '@/components/Dropdown'
+import { Mode, Team } from '@/types/demo'
 
-const teamFilterOptions = [
-  { label: 'All teams', value: 'All teams' },
-  { label: 'Engineering', value: 'Engineering' },
-  { label: 'Product', value: 'Product' },
-  { label: 'Business', value: 'Business' },
-]
+const teamFilterOptions = Object.values(Team).map((team) => ({
+  label: team,
+  value: team,
+}))
 
 interface WorkspaceControlsProps {
-  mode: 'decisions' | 'memory'
+  mode: Mode
   decisionCount: number
   query: string
-  team: string
-  onModeChange: (mode: 'decisions' | 'memory') => void
+  team: Team
+  onModeChange: (mode: Mode) => void
   onQueryChange: (query: string) => void
-  onTeamChange: (team: string) => void
+  onTeamChange: (team: Team) => void
 }
 
 export function WorkspaceControls({
@@ -50,9 +49,9 @@ export function WorkspaceControls({
             'aria-pressed:shadow-[0_1px_3px_#29371812] max-[760px]:flex-1',
             'max-[760px]:h-11 max-[760px]:px-2 max-[760px]:text-[11px]',
           )}
-          variant={mode === 'decisions' ? 'secondary' : 'ghost'}
-          onClick={() => onModeChange('decisions')}
-          aria-pressed={mode === 'decisions'}
+          variant={mode === Mode.Decisions ? 'secondary' : 'ghost'}
+          onClick={() => onModeChange(Mode.Decisions)}
+          aria-pressed={mode === Mode.Decisions}
         >
           <BookOpen />
           Decision log
@@ -71,15 +70,15 @@ export function WorkspaceControls({
             'aria-pressed:shadow-[0_1px_3px_#29371812] max-[760px]:flex-1',
             'max-[760px]:h-11 max-[760px]:px-2 max-[760px]:text-[11px]',
           )}
-          variant={mode === 'memory' ? 'secondary' : 'ghost'}
-          onClick={() => onModeChange('memory')}
-          aria-pressed={mode === 'memory'}
+          variant={mode === Mode.Memory ? 'secondary' : 'ghost'}
+          onClick={() => onModeChange(Mode.Memory)}
+          aria-pressed={mode === Mode.Memory}
         >
           <Sparkles />
           Ask your memory
         </Button>
       </div>
-      {mode === 'decisions' && (
+      {mode === Mode.Decisions && (
         <div
           className={cn(
             'flex items-center gap-2.5 max-[760px]:w-full max-[760px]:grid',
@@ -101,7 +100,7 @@ export function WorkspaceControls({
           </div>
           <Dropdown
             label="Filter by team"
-            placeholder="All teams"
+            placeholder={Team.All}
             options={teamFilterOptions}
             hideLabel
             className="w-37.5 max-[760px]:w-full"
